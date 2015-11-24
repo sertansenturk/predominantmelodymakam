@@ -49,6 +49,6 @@ We would like to thank Dr. Robert Grafias for allowing us to use [his makam musi
 
 References
 -------
-[1] _Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, Ankara, Turkey._
-[2] _Salamon, J., Gómez, E. (2012). "Melody Extraction from Polyphonic Music Signals using Pitch Contour Characteristics", IEEE Transactions on Audio, Speech and Language Processing, 20(6):1759-1770_
+[1] _Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, Ankara, Turkey._   
+[2] _Salamon, J., Gómez, E. (2012). "Melody Extraction from Polyphonic Music Signals using Pitch Contour Characteristics", IEEE Transactions on Audio, Speech and Language Processing, 20(6):1759-1770_   
 [3] _Bozkurt, B. (2008). "An Automatic Pitch Analysis Method for Turkish Maqam Music," Journal of New Music Research. 37(1):1-13._
