@@ -1,13 +1,14 @@
 # makampredominantmelody
 Predominant melody extraction for makam music
 
-Reference
-=========
+This repository hosts the the implementation of the predominant melody extraction proposed for makam music in:
 
-If you are using this extractor please cite the following paper:
+_Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, Ankara, Turkey._
 
-	Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, Ankara, Turkey.
+If you are using this extractor please cite the above paper. 
 
+The extractor is based on the methodology by [2]. The contour selection step in [2] is trained on the specfic characteristics of Western pop music and jazz. We remove this step and use a simplified contour selection step by selecting the longest contour at each time instance and discarding all other contours.
+	
 Usage
 =======
 ```python
@@ -39,9 +40,14 @@ Now you can install the rest of the dependencies:
 
 Authors
 -------
-Hasan Sercan Atlı	hsercanatli@gmail.com
+Hasan Sercan Atlı	hsercanatli@gmail.com  
 Sertan Senturk		contact@sertansenturk.com
 
 Acknowledgements
 ------
-We would like to thank Dr. Robert Grafias for allowing us to use his makam music collection (in this repository the recording with MBID: d2731692-626d-4a6d-9b67-a70c9e7b9745) in our research.
+We would like to thank Dr. Robert Grafias for allowing us to use [his makam music collection](https://eee.uci.edu/programs/rgarfias/films.html) in our research (in this repository the recording with MBID: [d2731692-626d-4a6d-9b67-a70c9e7b9745](http://musicbrainz.org/recording/d2731692-626d-4a6d-9b67-a70c9e7b9745)).
+
+References
+-------
+[1] _Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, Ankara, Turkey._
+[2] _J. Salamon and E. Gómez, "Melody Extraction from Polyphonic Music Signals using Pitch Contour Characteristics", IEEE Transactions on Audio, Speech and Language Processing, 20(6):1759-1770, Aug. 2012._
