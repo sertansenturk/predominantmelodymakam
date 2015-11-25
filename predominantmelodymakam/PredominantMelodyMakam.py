@@ -27,9 +27,6 @@ class PredominantMelodyMakam():
     _version = "0.6"
     _sourcetype = "mp3"
     _slug = "makampitch"
-    _output = {"pitch": {"extension": "json", "mimetype": "application/json"},
-                         "matlab": {"extension": "mat", "mimetype": "application/octet-stream"},
-                         "settings": {"extension": "json", "mimetype": "application/json"}}
 
     def __init__(self, hopSize = 128, frameSize = 2048, binResolution = 7.5, minFrequency = 55, maxFrequency = 1760,
         magnitudeThreshold = 0, peakDistributionThreshold = 1.4, filterPitch = True, confidenceThreshold = 36, minChunkSize = 50):
