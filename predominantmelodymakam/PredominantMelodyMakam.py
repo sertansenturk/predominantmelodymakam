@@ -48,12 +48,13 @@ class PredominantMelodyMakam():
       from essentia import __version__ as essentia_version
       citation = u"Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, Ankara, Turkey."
       
-      return {'hopSize': self.hopSize, 'frameSize': self.frameSize, 'binResolution': self.binResolution, 
-              'minFrequency': self.minFrequency, 'maxFrequency': self.maxFrequency, 
-              'magnitudeThreshold': self.magnitudeThreshold, 'peakDistributionThreshold': self.peakDistributionThreshold, 
+      return {'hopSize': self.hopSize, 'frameSize': self.frameSize, 'pitchUnit': 'Hz', 
+              'binResolution': self.binResolution, 'minFrequency': self.minFrequency, 
+              'maxFrequency': self.maxFrequency, 'magnitudeThreshold': self.magnitudeThreshold, 
+              'sampleRate':self.sampleRate, 'peakDistributionThreshold': self.peakDistributionThreshold, 
               'filterPitch': self.filterPitch, 'confidenceThreshold': self.confidenceThreshold, 
               'minChunkSize': self.minChunkSize, 'version':self._version, 'slug':self._slug, 
-              'essentiaVersion': essentia_version, 'pitchUnit': 'Hz', 'citation': citation}
+              'essentiaVersion': essentia_version, 'citation': citation}
 
     def run(self, fname):        
         run_windowing = estd.Windowing(zeroPadding = 3 * self.frameSize) # Hann window with x4 zero padding
