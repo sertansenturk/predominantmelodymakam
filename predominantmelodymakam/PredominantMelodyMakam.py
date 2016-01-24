@@ -75,8 +75,10 @@ class PredominantMelodyMakam():
                         binResolution=self.binResolution,
                         peakDistributionThreshold = self.peakDistributionThreshold)
 
-        run_pitch_filter = estd.PitchFilter(confidenceThreshold=self.confidenceThreshold,
-                        minChunkSize=self.minChunkSize)
+        if self.filterPitch:
+            run_pitch_filter = estd.PitchFilter(confidenceThreshold=self.confidenceThreshold,
+                                                minChunkSize=self.minChunkSize)
+
         pool = Pool()
 
         # load audio and eqLoudness
