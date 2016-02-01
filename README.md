@@ -3,7 +3,7 @@ Predominant melody extraction for makam music
 
 This repository hosts the the implementation of the predominant melody extraction proposed for makam music in:
 
-_Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, Ankara, Turkey._
+_Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, pages 142–153, Ankara, Turkey._
 
 If you are using this extractor please cite the above paper. 
 
