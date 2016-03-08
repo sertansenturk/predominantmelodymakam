@@ -1,4 +1,4 @@
-# makampredominantmelody
+# predominantmelodymakam
 Predominant melody extraction for makam music
 
 This repository hosts the the implementation of the predominant melody extraction proposed for makam music in:
