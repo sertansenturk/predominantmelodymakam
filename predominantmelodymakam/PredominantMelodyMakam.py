@@ -6,7 +6,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero
 # General Public License v3.0 for more details.
 #
-# You should have received a copy of the GNU Affero General Public License v3.0 
+# You should have received a copy of the GNU Affero General Public License v3.0
 # along with this program. If not, see http://www.gnu.org/licenses/
 #
 # If you are using this extractor please cite the following paper:
@@ -24,7 +24,7 @@ import numpy as np
 
 
 class PredominantMelodyMakam:
-    _version = "0.6"
+    _version = "1.1"
     _sourcetype = "mp3"
     _slug = "makampitch"
 
@@ -210,8 +210,8 @@ class PredominantMelodyMakam:
         salience = np.array([0.] * num_samples)
         for i in xrange(0, len(pitch_contours_no_overlap)):
             start_samp = start_samples_no_overlap[i]
-            end_samp = start_samples_no_overlap[i] + \
-                       len(pitch_contours_no_overlap[i])
+            end_samp = start_samples_no_overlap[i] + len(
+                pitch_contours_no_overlap[i])
 
             try:
                 pitch[start_samp:end_samp] = pitch_contours_no_overlap[i]
