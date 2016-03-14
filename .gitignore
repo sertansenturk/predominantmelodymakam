@@ -1,5 +1,5 @@
-.DS_Store
 *.egg-info
-.ipynb_checkpoints
-.idea
 *.pyc
+.*
+!.gitignore
+!.travis.yml
