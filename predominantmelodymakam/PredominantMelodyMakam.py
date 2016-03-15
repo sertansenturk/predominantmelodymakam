@@ -217,10 +217,10 @@ class PredominantMelodyMakam:
                 print "The last pitch contour exceeds the audio length. " \
                       "Trimming..."
 
-                pitch[start_samp:] = pitch_contours_no_overlap[i][
-                                      :len(pitch) - start_samp]
-                salience[start_samp:] = contour_saliences_no_overlap[i][
-                                         :len(pitch) - start_samp]
+                pitch[start_samp:] = pitch_contours_no_overlap[i][:len(
+                    pitch) - start_samp]
+                salience[start_samp:] = contour_saliences_no_overlap[i][:len(
+                    pitch) - start_samp]
 
         return pitch, salience
 
