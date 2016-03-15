@@ -66,8 +66,8 @@ class PredominantMelodyMakam:
                 'filterPitch': self.filter_pitch,
                 'confidenceThreshold': self.confidence_threshold,
                 'sampleRate': self.sample_rate,
-                'minChunkSize': self.min_chunk_size, 'version': self._version,
-                'slug': self._slug, 'essentiaVersion': essentia_version,
+                'minChunkSize': self.min_chunk_size,
+                'essentiaVersion': essentia_version,
                 'citation': citation}
 
     def run(self, fname):
@@ -135,15 +135,29 @@ class PredominantMelodyMakam:
 
         # pitch filter
         if self.filter_pitch:
-            run_pitch_filter = estd.PitchFilter(
-                confidenceThreshold=self.confidence_threshold,
-                minChunkSize=self.min_chunk_size)
-            pitch = run_pitch_filter(pitch, pitch_salience)
+            try:
+                run_pitch_filter = estd.PitchFilter(
+                    confidenceThreshold=self.confidence_threshold,
+                    minChunkSize=self.min_chunk_size)
+                pitch = run_pitch_filter(pitch, pitch_salience)
+                # generate time stamps
+            except AttributeError:  # fall back to python implementation
+                from pitchfilter.PitchFilter import PitchFilter
+                run_pitch_filter = PitchFilter()
 
-        # generate time stamps
-        time_stamps = [s * self.hop_size / float(self.sample_rate) for s in
-                       xrange(0, len(pitch))]
+                # generate time stamps
+                temp_tt = [s * self.hop_size / float(
+                    self.sample_rate) for s in xrange(0, len(pitch))]
+                temp_pitch = np.vstack((
+                    temp_tt, pitch, pitch_salience)).transpose()
 
+                temp_pitch = run_pitch_filter.run(temp_pitch)
+
+                pitch = temp_pitch[:, 1]
+                pitch_salience = temp_pitch[:, 2]
+
+        time_stamps = [s * self.hop_size / float(self.sample_rate)
+                       for s in xrange(0, len(pitch))]
         # [time pitch salience] matrix
         out = np.transpose(
             np.vstack((time_stamps, pitch.tolist(), pitch_salience.tolist())))
