@@ -23,7 +23,7 @@ from math import ceil
 import numpy as np
 
 
-class PredominantMelodyMakam:
+class PredominantMelodyMakam(object):
     def __init__(self, hop_size=128, frame_size=2048, bin_resolution=7.5,
                  min_frequency=55, max_frequency=1760, magnitude_threshold=0,
                  peak_distribution_threshold=1.4, filter_pitch=True,
