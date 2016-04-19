@@ -97,8 +97,7 @@ class PredominantMelodyMakam(object):
                 pitch, pitch_salience)
 
         # generate time stamps
-        time_stamps = [s * self.hop_size / float(
-            self.sample_rate) for s in xrange(0, len(pitch))]
+        time_stamps = self._gen_time_stamps(0, len(pitch))
 
         # [time pitch salience] matrix
         out = np.transpose(
@@ -178,8 +177,7 @@ class PredominantMelodyMakam(object):
             run_pitch_filter = PitchFilter()
 
             # generate time stamps
-            time_stamps = [s * self.hop_size / float(
-                self.sample_rate) for s in xrange(0, len(pitch))]
+            time_stamps = self._gen_time_stamps(0, len(pitch))
 
             temp_pitch = np.vstack((
                 time_stamps, pitch, pitch_salience)).transpose()
@@ -190,6 +188,11 @@ class PredominantMelodyMakam(object):
             pitch_salience = temp_pitch[:, 2]
 
         return pitch, pitch_salience
+
+    def _gen_time_stamps(self, start_samp, end_samp):
+        time_stamps = [s * self.hop_size / float(
+            self.sample_rate) for s in xrange(start_samp, end_samp)]
+        return time_stamps
 
     def select_contours(self, pitch_contours, contour_saliences, start_times,
                         duration):
