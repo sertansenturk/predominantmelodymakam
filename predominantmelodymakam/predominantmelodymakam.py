@@ -111,6 +111,14 @@ class PredominantMelodyMakam(object):
 
         return {'pitch': out, 'settings': settings}
 
+    def extract(self, fname):
+        '''
+        Alias of self.run
+        :param fname: filename
+        :return: dictionary with 'pitch' and 'settings' keys
+        '''
+        self.run(fname)
+
     def _extract_pitch_contours(self, audio):
         # Hann window with x4 zero padding
         run_windowing = estd.Windowing(zeroPadding=3 * self.frame_size)
