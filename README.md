@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sertansenturk/predominantmelodymakam.svg?branch=master)](https://travis-ci.org/sertansenturk/predominantmelodymakam) [![Code Climate](https://codeclimate .com/github/sertansenturk/predominantmelodymakam/badges/gpa.svg)](https://codeclimate.com/github/sertansenturk/predominantmelodymakam)
+
 # predominantmelodymakam
 Predominant melody extraction for makam music
 
@@ -12,7 +14,7 @@ The extractor is based on the methodology by [2]. The contour selection step in 
 Usage
 =======
 ```python
-from predominantmelodymakam.PredominantMelodyMakam import PredominantMelodyMakam
+from predominantmelodymakam.predominantmelodymakam import PredominantMelodyMakam
 extractor = PredominantMelodyMakam()
 results = extractor.run(audiofile)
 ```

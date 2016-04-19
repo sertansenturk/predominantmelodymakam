@@ -245,9 +245,9 @@ class PredominantMelodyMakam(object):
 
         return pitch, salience
 
-    def _join_contours(self, pitch_contours_no_overlap,
-                       contour_saliences_no_overlap, start_samples_no_overlap,
-                       num_samples):
+    @staticmethod
+    def _join_contours(pitch_contours_no_overlap, contour_saliences_no_overlap,
+                       start_samples_no_overlap, num_samples):
         # accumulate pitch and salience
         pitch = np.array([0.] * num_samples)
         salience = np.array([0.] * num_samples)
@@ -266,7 +266,7 @@ class PredominantMelodyMakam(object):
                 pitch[start_samp:] = pitch_contours_no_overlap[i][:len(
                     pitch) - start_samp]
                 salience[start_samp:] = contour_saliences_no_overlap[i][:len(
-                    pitch) - start_samp]
+                    salience) - start_samp]
         return pitch, salience
 
     @staticmethod
