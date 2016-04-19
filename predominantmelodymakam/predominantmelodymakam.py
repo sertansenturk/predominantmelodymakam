@@ -214,9 +214,19 @@ class PredominantMelodyMakam(object):
 
             # remove overlaps
             [start_samples, pitch_contours, contour_saliences] = \
-                self.remove_overlaps(start_samples, pitch_contours,
-                                     contour_saliences, lens, acc_idx)
+                self._remove_overlaps(start_samples, pitch_contours,
+                                      contour_saliences, lens, acc_idx)
 
+        pitch, salience = self._join_contours(pitch_contours_no_overlap,
+                                              contour_saliences_no_overlap,
+                                              start_samples_no_overlap,
+                                              num_samples)
+
+        return pitch, salience
+
+    def _join_contours(self, pitch_contours_no_overlap,
+                       contour_saliences_no_overlap, start_samples_no_overlap,
+                       num_samples):
         # accumulate pitch and salience
         pitch = np.array([0.] * num_samples)
         salience = np.array([0.] * num_samples)
@@ -228,7 +238,6 @@ class PredominantMelodyMakam(object):
             try:
                 pitch[start_samp:end_samp] = pitch_contours_no_overlap[i]
                 salience[start_samp:end_samp] = contour_saliences_no_overlap[i]
-
             except ValueError:
                 warnings.warn("The last pitch contour exceeds the audio "
                               "length. Trimming...")
@@ -237,12 +246,11 @@ class PredominantMelodyMakam(object):
                     pitch) - start_samp]
                 salience[start_samp:] = contour_saliences_no_overlap[i][:len(
                     pitch) - start_samp]
-
         return pitch, salience
 
     @staticmethod
-    def remove_overlaps(start_samples, pitch_contours, contour_saliences,
-                        lens, acc_idx):
+    def _remove_overlaps(start_samples, pitch_contours, contour_saliences,
+                         lens, acc_idx):
         # remove overlaps
         rmv_idx = []
         for i in xrange(0, len(start_samples)):
