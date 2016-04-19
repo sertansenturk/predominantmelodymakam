@@ -72,10 +72,49 @@ class PredominantMelodyMakam(object):
                 'citation': citation}
 
     def run(self, fname):
+        # load audio and eqLoudness
+        # Note: MonoLoader resamples the audio signal to 44100 Hz by default
+        audio = estd.MonoLoader(filename=fname)()
+        audio = estd.EqualLoudness()(audio)
+
+        contours_bins, contours_start_times, contour_saliences, duration = \
+            self._extract_pitch_contours(audio)
+
+        # run the simplified contour selection
+        [pitch, pitch_salience] = self.select_contours(
+            contours_bins, contour_saliences, contours_start_times, duration)
+
+        # cent to Hz conversion
+        pitch = [0. if p == 0
+                 else 55. * 2. ** (self.bin_resolution * p / 1200.)
+                 for p in pitch]
+        pitch = e_array(pitch)
+        pitch_salience = e_array(pitch_salience)
+
+        # pitch filter
+        if self.filter_pitch:
+            pitch, pitch_salience = self._post_filter_pitch(
+                pitch, pitch_salience)
+
+        # generate time stamps
+        time_stamps = [s * self.hop_size / float(
+            self.sample_rate) for s in xrange(0, len(pitch))]
+
+        # [time pitch salience] matrix
+        out = np.transpose(
+            np.vstack((time_stamps, pitch.tolist(), pitch_salience.tolist())))
+        out = out.tolist()
+
+        # settings
+        settings = self.get_settings()
+        settings.update({'source': fname})
+
+        return {'pitch': out, 'settings': settings}
+
+    def _extract_pitch_contours(self, audio):
         # Hann window with x4 zero padding
         run_windowing = estd.Windowing(zeroPadding=3 * self.frame_size)
         run_spectrum = estd.Spectrum(size=self.frame_size * 4)
-
         run_spectral_peaks = estd.SpectralPeaks(
             minFrequency=self.min_frequency, maxFrequency=self.max_frequency,
             magnitudeThreshold=self.magnitude_threshold,
@@ -92,13 +131,8 @@ class PredominantMelodyMakam(object):
             hopSize=self.hop_size, binResolution=self.bin_resolution,
             peakDistributionThreshold=self.peak_distribution_threshold)
 
+        # compute frame by frame
         pool = Pool()
-
-        # load audio and eqLoudness
-        # Note: MonoLoader resamples the audio signal to 44100 Hz by default
-        audio = estd.MonoLoader(filename=fname)()
-        audio = estd.EqualLoudness()(audio)
-
         for frame in estd.FrameGenerator(audio, frameSize=self.frame_size,
                                          hopSize=self.hop_size):
             frame = run_windowing(frame)
@@ -122,56 +156,32 @@ class PredominantMelodyMakam(object):
             run_pitch_contours(
                 pool['allframes_salience_peaks_bins'],
                 pool['allframes_salience_peaks_contourSaliences'])
+        return contours_bins, contours_start_times, contour_saliences, duration
 
-        # run the simplified contour selection
-        [pitch, pitch_salience] = self.select_contours(
-            contours_bins, contour_saliences, contours_start_times, duration)
+    def _post_filter_pitch(self, pitch, pitch_salience):
+        try:
+            run_pitch_filter = estd.PitchFilter(
+                confidenceThreshold=self.confidence_threshold,
+                minChunkSize=self.min_chunk_size)
+            pitch = run_pitch_filter(pitch, pitch_salience)
 
-        # cent to Hz conversion
-        pitch = [0. if p == 0
-                 else 55. * 2. ** (self.bin_resolution * p / 1200.)
-                 for p in pitch]
-        pitch = e_array(pitch)
-        pitch_salience = e_array(pitch_salience)
+        except AttributeError:  # fall back to python implementation
+            from pitchfilter.PitchFilter import PitchFilter
+            run_pitch_filter = PitchFilter()
 
-        # pitch filter
-        if self.filter_pitch:
-            try:
-                run_pitch_filter = estd.PitchFilter(
-                    confidenceThreshold=self.confidence_threshold,
-                    minChunkSize=self.min_chunk_size)
-                pitch = run_pitch_filter(pitch, pitch_salience)
+            # generate time stamps
+            time_stamps = [s * self.hop_size / float(
+                self.sample_rate) for s in xrange(0, len(pitch))]
 
-            except AttributeError:  # fall back to python implementation
-                from pitchfilter.PitchFilter import PitchFilter
-                run_pitch_filter = PitchFilter()
+            temp_pitch = np.vstack((
+                time_stamps, pitch, pitch_salience)).transpose()
 
-                # generate time stamps
-                time_stamps = [s * self.hop_size / float(
-                    self.sample_rate) for s in xrange(0, len(pitch))]
+            temp_pitch = run_pitch_filter.run(temp_pitch)
 
-                temp_pitch = np.vstack((
-                    time_stamps, pitch, pitch_salience)).transpose()
+            pitch = temp_pitch[:, 1]
+            pitch_salience = temp_pitch[:, 2]
 
-                temp_pitch = run_pitch_filter.run(temp_pitch)
-
-                pitch = temp_pitch[:, 1]
-                pitch_salience = temp_pitch[:, 2]
-
-        # generate time stamps
-        time_stamps = [s * self.hop_size / float(
-            self.sample_rate) for s in xrange(0, len(pitch))]
-
-        # [time pitch salience] matrix
-        out = np.transpose(
-            np.vstack((time_stamps, pitch.tolist(), pitch_salience.tolist())))
-        out = out.tolist()
-
-        # settings
-        settings = self.get_settings()
-        settings.update({'source': fname})
-
-        return {'pitch': out, 'settings': settings}
+        return pitch, pitch_salience
 
     def select_contours(self, pitch_contours, contour_saliences, start_times,
                         duration):
