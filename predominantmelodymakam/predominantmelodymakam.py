@@ -21,6 +21,7 @@ from essentia import array as e_array
 import essentia.standard as estd
 from math import ceil
 import numpy as np
+import warnings
 
 
 class PredominantMelodyMakam(object):
@@ -140,24 +141,27 @@ class PredominantMelodyMakam(object):
                     confidenceThreshold=self.confidence_threshold,
                     minChunkSize=self.min_chunk_size)
                 pitch = run_pitch_filter(pitch, pitch_salience)
-                # generate time stamps
+
             except AttributeError:  # fall back to python implementation
                 from pitchfilter.PitchFilter import PitchFilter
                 run_pitch_filter = PitchFilter()
 
                 # generate time stamps
-                temp_tt = [s * self.hop_size / float(
+                time_stamps = [s * self.hop_size / float(
                     self.sample_rate) for s in xrange(0, len(pitch))]
+
                 temp_pitch = np.vstack((
-                    temp_tt, pitch, pitch_salience)).transpose()
+                    time_stamps, pitch, pitch_salience)).transpose()
 
                 temp_pitch = run_pitch_filter.run(temp_pitch)
 
                 pitch = temp_pitch[:, 1]
                 pitch_salience = temp_pitch[:, 2]
 
-        time_stamps = [s * self.hop_size / float(self.sample_rate)
-                       for s in xrange(0, len(pitch))]
+        # generate time stamps
+        time_stamps = [s * self.hop_size / float(
+            self.sample_rate) for s in xrange(0, len(pitch))]
+
         # [time pitch salience] matrix
         out = np.transpose(
             np.vstack((time_stamps, pitch.tolist(), pitch_salience.tolist())))
@@ -209,11 +213,9 @@ class PredominantMelodyMakam(object):
                             start_samples_no_overlap[-1] + lens_no_overlap[-1])
 
             # remove overlaps
-            [start_samples, pitch_contours,
-             contour_saliences] = self.remove_overlaps(start_samples,
-                                                       pitch_contours,
-                                                       contour_saliences, lens,
-                                                       acc_idx)
+            [start_samples, pitch_contours, contour_saliences] = \
+                self.remove_overlaps(start_samples, pitch_contours,
+                                     contour_saliences, lens, acc_idx)
 
         # accumulate pitch and salience
         pitch = np.array([0.] * num_samples)
@@ -228,8 +230,8 @@ class PredominantMelodyMakam(object):
                 salience[start_samp:end_samp] = contour_saliences_no_overlap[i]
 
             except ValueError:
-                print "The last pitch contour exceeds the audio length. " \
-                      "Trimming..."
+                warnings.warn("The last pitch contour exceeds the audio "
+                              "length. Trimming...")
 
                 pitch[start_samp:] = pitch_contours_no_overlap[i][:len(
                     pitch) - start_samp]
