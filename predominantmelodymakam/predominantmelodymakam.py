@@ -111,11 +111,11 @@ class PredominantMelodyMakam(object):
         return {'pitch': out, 'settings': settings}
 
     def extract(self, fname):
-        '''
+        """
         Alias of self.run
         :param fname: filename
         :return: dictionary with 'pitch' and 'settings' keys
-        '''
+        """
         self.run(fname)
 
     def _extract_pitch_contours(self, audio):
@@ -173,7 +173,7 @@ class PredominantMelodyMakam(object):
             pitch = run_pitch_filter(pitch, pitch_salience)
 
         except AttributeError:  # fall back to python implementation
-            from pitchfilter.PitchFilter import PitchFilter
+            from pitchfilter.pitchfilter import PitchFilter
             run_pitch_filter = PitchFilter()
 
             # generate time stamps
