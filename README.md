@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sertansenturk/predominantmelodymakam.svg?branch=master)](https://travis-ci.org/sertansenturk/predominantmelodymakam) [![Code Climate](https://codeclimate .com/github/sertansenturk/predominantmelodymakam/badges/gpa.svg)](https://codeclimate.com/github/sertansenturk/predominantmelodymakam)
+[![GitHub version](https://badge.fury.io/gh/sertansenturk%2Fpredominantmelodymakam.svg)](https://badge.fury.io/gh/sertansenturk%2Fpredominantmelodymakam) [![Build Status](https://travis-ci.org/sertansenturk/predominantmelodymakam.svg?branch=master)](https://travis-ci.org/sertansenturk/predominantmelodymakam) [![Code Climate](https://codeclimate.com/github/sertansenturk/predominantmelodymakam/badges/gpa.svg)](https://codeclimate.com/github/sertansenturk/predominantmelodymakam) [![DOI](https://zenodo.org/badge/21104/sertansenturk/predominantmelodymakam.svg)](https://zenodo.org/badge/latestdoi/21104/sertansenturk/predominantmelodymakam)
 
 # predominantmelodymakam
 Predominant melody extraction for makam music
