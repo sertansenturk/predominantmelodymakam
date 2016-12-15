@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(name='predominantmelodymakam',
     description='Predominant melody extraction of makam music',
-    version='1.2.0',
+    version='1.2.1',
     author='Sertan Senturk',
     author_email='contact AT sertansenturk DOT com',
     license='agpl 3.0',

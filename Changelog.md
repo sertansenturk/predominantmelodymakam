@@ -1,3 +1,6 @@
+#### predominantmelodymakam v1.2.1
+ - Fixed a bug where the extract() method was not returning anything
+
 #### predominantmelodymakam v1.2
  - Added the [pitchfilter](https://github.com/hsercanatli/pitchfilter) repository as a fallback if the Essetian PitchFilter does not work due to Essentia version problem (e.g. the official version for Ubuntu 14.04).
  - Added flake8 checking to Travis CI
