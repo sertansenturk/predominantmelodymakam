@@ -33,6 +33,10 @@ If you want to install the repository, it is recommended to install the package 
 If you want to be able to edit files and have the changes be reflected, then install the repo like this instead:
 
     pip install -e .
+    
+Now you can install the rest of the dependencies:
+
+    pip install -r requirements
 
 The algorithm uses several modules in Essentia. Follow the [instructions](essentia.upf.edu/documentation/installing.html) to install the library. Then you should link the python bindings of Essentia in the virtual environment:
 
