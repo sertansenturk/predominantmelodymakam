@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2014, 2015 Music Technology Group - Universitat Pompeu Fabra
+# Copyright 2014 - 2017 Music Technology Group - Universitat Pompeu Fabra
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY ARRANTY; without even the implied warranty of
