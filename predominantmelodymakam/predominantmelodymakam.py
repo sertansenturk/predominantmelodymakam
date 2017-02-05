@@ -212,31 +212,47 @@ class PredominantMelodyMakam(object):
         start_samples_no_overlap = []
         contour_saliences_no_overlap = []
         lens_no_overlap = []
-        while pitch_contours:  # terminate when all the contours are checked
-            # print len(pitchContours)
+        try:
+            # the pitch contours is a list of numpy arrays, parse them starting
+            # with the longest contour
+            while pitch_contours:  # terminate when all the contours are checked
+                # print len(pitchContours)
 
-            # get the lengths of the pitchContours
-            lens = [len(k) for k in pitch_contours]
+                # get the lengths of the pitchContours
+                lens = [len(k) for k in pitch_contours]
 
-            # find the longest pitch contour
-            long_idx = lens.index(max(lens))
+                # find the longest pitch contour
+                long_idx = lens.index(max(lens))
 
-            # pop the lists related to the longest pitchContour and append
-            # it to the new list
-            pitch_contours_no_overlap.append(pitch_contours.pop(long_idx))
-            contour_saliences_no_overlap.append(
-                contour_saliences.pop(long_idx))
-            start_samples_no_overlap.append(start_samples.pop(long_idx))
-            lens_no_overlap.append(lens.pop(long_idx))
+                # pop the lists related to the longest pitchContour and append
+                # it to the new list
+                pitch_contours_no_overlap.append(pitch_contours.pop(long_idx))
+                contour_saliences_no_overlap.append(
+                    contour_saliences.pop(long_idx))
+                start_samples_no_overlap.append(start_samples.pop(long_idx))
+                lens_no_overlap.append(lens.pop(long_idx))
 
-            # accumulate the filled samples
-            acc_idx = range(start_samples_no_overlap[-1],
-                            start_samples_no_overlap[-1] + lens_no_overlap[-1])
+                # accumulate the filled samples
+                acc_idx = range(start_samples_no_overlap[-1],
+                                start_samples_no_overlap[-1] +
+                                lens_no_overlap[-1])
 
-            # remove overlaps
-            [start_samples, pitch_contours, contour_saliences] = \
-                self._remove_overlaps(start_samples, pitch_contours,
-                                      contour_saliences, lens, acc_idx)
+                # remove overlaps
+                [start_samples, pitch_contours, contour_saliences] = \
+                    self._remove_overlaps(start_samples, pitch_contours,
+                                          contour_saliences, lens, acc_idx)
+        except ValueError:
+            # if the audio input is very short such that Essentia returns a
+            # returns a single contour as a numpy array (of length 1) of numpy
+            # array (of length 1). In this case the while loop fails directly
+            # as it tries to check all the truth value of an all pitch values,
+            # instead of checking whether the list is emptry or not.
+            # Here we handle the error in a Pythonic way by simply breaking the
+            # loop and assigning the inputs to outputs since a single contour
+            # means nothing to filter
+            pitch_contours_no_overlap = pitch_contours
+            contour_saliences_no_overlap = contour_saliences
+            start_samples_no_overlap = start_samples
 
         pitch, salience = self._join_contours(pitch_contours_no_overlap,
                                               contour_saliences_no_overlap,
