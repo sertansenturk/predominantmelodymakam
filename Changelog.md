@@ -1,3 +1,7 @@
+#### predominantmelodymakam v1.2.2
+ - Updated requirements file according to the change in 'pitchfilter' module.
+ - Fixed a bug where the while loop fails directly when the audio input is very short.
+
 #### predominantmelodymakam v1.2.1
  - Fixed a bug where the extract() method was not returning anything
 
