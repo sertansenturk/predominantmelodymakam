@@ -1,4 +1,4 @@
-[![GitHub version](https://badge.fury.io/gh/sertansenturk%2Fpredominantmelodymakam.svg)](https://badge.fury.io/gh/sertansenturk%2Fpredominantmelodymakam) [![Build Status](https://travis-ci.org/sertansenturk/predominantmelodymakam.svg?branch=master)](https://travis-ci.org/sertansenturk/predominantmelodymakam) [![Code Climate](https://codeclimate.com/github/sertansenturk/predominantmelodymakam/badges/gpa.svg)](https://codeclimate.com/github/sertansenturk/predominantmelodymakam) [![DOI](https://zenodo.org/badge/21104/sertansenturk/predominantmelodymakam.svg)](https://zenodo.org/badge/latestdoi/21104/sertansenturk/predominantmelodymakam)
+[![GitHub version](https://badge.fury.io/gh/sertansenturk%2Fpredominantmelodymakam.svg)](https://badge.fury.io/gh/sertansenturk%2Fpredominantmelodymakam) [![Build Status](https://travis-ci.org/sertansenturk/predominantmelodymakam.svg?branch=master)](https://travis-ci.org/sertansenturk/predominantmelodymakam) [![Code Climate](https://codeclimate.com/github/sertansenturk/predominantmelodymakam/badges/gpa.svg)](https://codeclimate.com/github/sertansenturk/predominantmelodymakam) [![DOI](https://zenodo.org/badge/21104/sertansenturk/predominantmelodymakam.svg)](https://zenodo.org/badge/latestdoi/21104/sertansenturk/predominantmelodymakam) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-ff69b4.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
 # predominantmelodymakam
 Predominant melody extraction for makam music
@@ -46,6 +46,12 @@ Authors
 -------
 Hasan Sercan Atlı	hsercanatli@gmail.com  
 Sertan Senturk		contact@sertansenturk.com
+
+License
+------
+The source code hosted in this repository is licenced under [Affero GPL version 3](https://www.gnu.org/licenses/agpl-3.0.en.html). 
+
+The extracted predominant melody and the figure in this repository are licenced under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 Acknowledgements
 ------
