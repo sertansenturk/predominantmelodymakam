@@ -215,7 +215,8 @@ class PredominantMelodyMakam(object):
         try:
             # the pitch contours is a list of numpy arrays, parse them starting
             # with the longest contour
-            while pitch_contours:  # terminate when all the contours are checked
+            while pitch_contours:  # terminate when all the contours are
+                # checked
                 # print len(pitchContours)
 
                 # get the lengths of the pitchContours
@@ -243,10 +244,10 @@ class PredominantMelodyMakam(object):
                                           contour_saliences, lens, acc_idx)
         except ValueError:
             # if the audio input is very short such that Essentia returns a
-            # returns a single contour as a numpy array (of length 1) of numpy
-            # array (of length 1). In this case the while loop fails directly
+            # single contour as a numpy array (of length 1) of numpy array
+            # (of length 1). In this case the while loop fails directly
             # as it tries to check all the truth value of an all pitch values,
-            # instead of checking whether the list is emptry or not.
+            # instead of checking whether the list is empty or not.
             # Here we handle the error in a Pythonic way by simply breaking the
             # loop and assigning the inputs to outputs since a single contour
             # means nothing to filter
