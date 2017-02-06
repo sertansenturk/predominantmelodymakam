@@ -1,6 +1,6 @@
 #### predominantmelodymakam v1.2.2
  - Corrected the name of the 'pitchfilter' package in the requirements file.
- - Fixed a bug where the while loop fails directly when the audio input is very short.
+ - Fixed a bug where the pitch contour selection step fails, when the audio input is very short.
 
 #### predominantmelodymakam v1.2.1
  - Fixed a bug where the extract() method was not returning anything
