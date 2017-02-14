@@ -55,7 +55,7 @@ The extracted predominant melody and the figure in this repository are licenced 
 
 Acknowledgements
 ------
-We would like to thank Dr. Robert Grafias for allowing us to use [his makam music collection](https://eee.uci.edu/programs/rgarfias/films.html) in our research (in this repository the recording with MBID: [d2731692-626d-4a6d-9b67-a70c9e7b9745](http://musicbrainz.org/recording/d2731692-626d-4a6d-9b67-a70c9e7b9745)).
+We would like to thank Dr. Robert Garfias for allowing us to use [his makam music collection](https://eee.uci.edu/programs/rgarfias/films.html) in our research (in this repository the recording with MBID: [d2731692-626d-4a6d-9b67-a70c9e7b9745](http://musicbrainz.org/recording/d2731692-626d-4a6d-9b67-a70c9e7b9745)).
 
 References
 -------
