@@ -191,7 +191,7 @@ class PredominantMelodyMakam(object):
 
     def _gen_time_stamps(self, start_samp, end_samp):
         time_stamps = [s * self.hop_size / float(
-            self.sample_rate) for s in xrange(start_samp, end_samp)]
+            self.sample_rate) for s in range(start_samp, end_samp)]
         return time_stamps
 
     def select_contours(self, pitch_contours, contour_saliences, start_times,
@@ -206,7 +206,7 @@ class PredominantMelodyMakam(object):
         # Start points of the contours in samples
         start_samples = [
             int(round(start_times[i] * sample_rate / float(hop_size)))
-            for i in xrange(0, len(start_times))]
+            for i in range(0, len(start_times))]
 
         pitch_contours_no_overlap = []
         start_samples_no_overlap = []
@@ -268,7 +268,7 @@ class PredominantMelodyMakam(object):
         # accumulate pitch and salience
         pitch = np.array([0.] * num_samples)
         salience = np.array([0.] * num_samples)
-        for i in xrange(0, len(pitch_contours_no_overlap)):
+        for i in range(0, len(pitch_contours_no_overlap)):
             start_samp = start_samples_no_overlap[i]
             end_samp = start_samples_no_overlap[i] + len(
                 pitch_contours_no_overlap[i])
@@ -291,7 +291,7 @@ class PredominantMelodyMakam(object):
                          lens, acc_idx):
         # remove overlaps
         rmv_idx = []
-        for i in xrange(0, len(start_samples)):
+        for i in range(0, len(start_samples)):
             # print '_' + str(i)
             # create the sample index vector for the checked pitch contour
             curr_samp_idx = range(start_samples[i], start_samples[i] + lens[i])
