@@ -41,6 +41,10 @@ Now you can install the rest of the dependencies:
 The algorithm uses several modules in Essentia. Follow the [instructions](http://essentia.upf.edu/documentation/installing.html) to install the library. Then you should link the python bindings of Essentia in the virtual environment:
 
     ln -s /usr/local/lib/python2.7/dist-packages/essentia env/lib/python2.7/site-packages
+    
+To run the [demo.ipynb](https://github.com/sertansenturk/predominantmelodymakam/blob/master/demo.ipynb) Jupyter notebook, you need to install jupyter and matplotlib:
+
+    pip install matplotlib
 
 Authors
 -------
