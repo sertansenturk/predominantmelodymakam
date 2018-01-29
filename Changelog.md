@@ -1,3 +1,6 @@
+#### predominantmelodymakam v1.3.0
+ - Added Python 3 support (contribution by Oriol Romani: https://github.com/sertansenturk/predominantmelodymakam/pull/10)
+
 #### predominantmelodymakam v1.2.2
  - Corrected the name of the 'pitchfilter' package in the requirements file.
  - Fixed a bug where the pitch contour selection step fails, when the audio input is very short.
