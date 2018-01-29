@@ -3,7 +3,7 @@
 # predominantmelodymakam
 Predominant melody extraction for makam music
 
-This repository hosts the the implementation of the predominant melody extraction proposed for makam music in:
+This repository hosts the the Python (2 & 3) implementation of the predominant melody extraction method proposed for makam music in:
 
 > Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, pages 142–153, Ankara, Turkey.
 
@@ -38,7 +38,9 @@ Now you can install the rest of the dependencies:
 
     pip install -r requirements
 
-The algorithm uses several modules in Essentia. Follow the [instructions](http://essentia.upf.edu/documentation/installing.html) to install the library. Then you should link the python bindings of Essentia in the virtual environment:
+The algorithm uses several modules in Essentia. Follow the [instructions](http://essentia.upf.edu/documentation/installing.html) to install the library. 
+
+__FOR PYTHON 2 ONLY:__, you should link the python bindings of Essentia in the virtual environment:
 
     ln -s /usr/local/lib/python2.7/dist-packages/essentia env/lib/python2.7/site-packages
     
