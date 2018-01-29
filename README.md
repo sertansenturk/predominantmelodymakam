@@ -3,14 +3,14 @@
 # predominantmelodymakam
 Predominant melody extraction for makam music
 
-This repository hosts the the Python (2 & 3) implementation of the predominant melody extraction method proposed for makam music in:
+This repository hosts the Python (2 & 3) implementation of the predominant melody extraction method proposed for makam music in:
 
 > Atlı, H. S., Uyar, B., Şentürk, S., Bozkurt, B., and Serra, X. (2014). Audio feature extraction for exploring Turkish makam music. In Proceedings of 3rd International Conference on Audio Technologies for Music and Media, pages 142–153, Ankara, Turkey.
 
 If you are using this extractor please cite the above paper. 
 
-The extractor is based on the methodology by [2]. The contour selection step in [2] is trained on the specfic characteristics of Western pop music and jazz. We remove this step and use a simplified contour selection step by selecting the longest contour at each time instance and discarding all other contours. Then we use the method proposed in [3] to remove the erroneous pitch estimations and correct octave errors.
-	
+The extractor is based on the methodology by [2]. The contour selection step in [2] is trained on the specific characteristics of Western pop music and jazz. We remove this step and use a simplified contour selection step by selecting the longest contour at each time instance and discarding all other contours. Then we use the method proposed in [3] to remove the erroneous pitch estimations and correct octave errors.
+    
 Usage
 =======
 ```python
@@ -50,14 +50,14 @@ To run the [demo.ipynb](https://github.com/sertansenturk/predominantmelodymakam/
 
 Authors
 -------
-Hasan Sercan Atlı	hsercanatli@gmail.com  
-Sertan Senturk		contact@sertansenturk.com
+Hasan Sercan Atlı    hsercanatli@gmail.com  
+Sertan Senturk        contact@sertansenturk.com
 
 License
 ------
-The source code hosted in this repository is licenced under [Affero GPL version 3](https://www.gnu.org/licenses/agpl-3.0.en.html). 
+The source code hosted in this repository is licensed under [Affero GPL version 3](https://www.gnu.org/licenses/agpl-3.0.en.html). 
 
-The extracted predominant melody and the figure in this repository are licenced under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+The extracted predominant melody and the figure in this repository are licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 Acknowledgements
 ------
