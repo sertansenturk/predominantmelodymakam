@@ -40,7 +40,7 @@ Now you can install the rest of the dependencies:
 
 The algorithm uses several modules in Essentia. Follow the [instructions](http://essentia.upf.edu/documentation/installing.html) to install the library. 
 
-__FOR PYTHON 2 ONLY:__, you should link the python bindings of Essentia in the virtual environment:
+__FOR PYTHON 2 ONLY:__ You should link the python bindings of Essentia in the virtual environment:
 
     ln -s /usr/local/lib/python2.7/dist-packages/essentia env/lib/python2.7/site-packages
     
