@@ -19,7 +19,7 @@ extractor = PredominantMelodyMakam()
 results = extractor.run(audiofile)
 ```
 
-Please refer to demo.ipynb for an interactive demo.
+Please refer to [demo.ipynb](demo.ipynb) for an interactive demo.
 
 Installation
 ============
@@ -44,7 +44,7 @@ The algorithm uses several modules in Essentia. Follow the [instructions](http:/
     
 To run the [demo.ipynb](https://github.com/sertansenturk/predominantmelodymakam/blob/master/demo.ipynb) Jupyter notebook, you need to install jupyter and matplotlib:
 
-    pip install matplotlib
+    pip install matplotlib jupyter
 
 Authors
 -------
